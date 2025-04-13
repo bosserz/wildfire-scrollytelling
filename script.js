@@ -940,6 +940,8 @@ function drawSection6_Preparedness(data) {
     );
 
     // Annotations for CA and MT
+    plot.selectAll(".annotation").remove(); // clear old annotations
+
     plot.selectAll(".annotation")
       .data(preparedData.filter(d => d.state === "California" || d.state === "Montana"))
       .enter()
@@ -949,7 +951,15 @@ function drawSection6_Preparedness(data) {
       .attr("y", d => y(d[currentY]) - 10)
       .attr("fill", "#ffd54f")
       .attr("font-size", "12px")
-      .text(d => d.state === "California" ? "Most fire stations" : "Low station count");
+      .text(d => {
+        if (d.state === "California") return "Good!";
+        if (d.state === "Montana") {
+          return currentY === "fires_2019_2023"
+            ? "Probably not enough?"
+            : "";
+        }
+        return "";
+      });
   };
 
   d3.select("#scatter-preparedness-y-axis").on("change", function () {
@@ -999,7 +1009,7 @@ function handleStepEnter(response) {
       <br>
       <br>
       From the plot, California stands out with the highest number of fire stations, suggesting a strong capacity for wildfire response. In contrast, Montana experiences a high number of wildfires but has fewer fire stations 
-      than several other states with far fewer wildfire incidents.
+      than several other states with far fewer wildfire incidents. However, when considering the total burned area, Montana's fires tend to be smaller in scale, which may reduce the need for a large number of response teams.
       `
     };
 
