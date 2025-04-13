@@ -1,6 +1,8 @@
 # Wildfires in America
 
-This interactive scrollytelling project explores the trends, causes, impacts, and preparedness surrounding wildfires in the United States from 2000 to 2023. The visualization is designed to communicate how wildfire frequency has declined over time, while the total area burned remains high—indicating increasing fire intensity. Through a combination of animated line charts, state-level comparisons, interactive maps, and contextual narratives, the story highlights key environmental and human factors contributing to wildfires and evaluates how well different states are prepared to respond.
+This interactive scrollytelling project explores the trends, causes, impacts, and preparedness surrounding wildfires in the United States.
+
+The visualization is designed to communicate how wildfire frequency has declined over time, while the total area burned remains high—indicating increasing fire intensity. Through a combination of animated line charts, state-level comparisons, interactive maps, and contextual narratives, the story highlights key environmental and human factors contributing to wildfires and evaluates how well different states are prepared to respond.
 
 ## 🔍 Key Features to Test
 
