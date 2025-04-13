@@ -259,3 +259,23 @@
     margin-right: auto;
     border-radius: 4px;
   }
+
+  .data-references {
+    list-style: none;
+    padding: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: left;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .data-references li {
+    margin-bottom: 10px;
+  }
+  
+  .data-references a {
+    color: #ffd54f;
+    text-decoration: underline;
+  }
+  
