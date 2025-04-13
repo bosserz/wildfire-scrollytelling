@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore the trends, causes, and preparedness gaps in U.S. wildfires through interactive storytelling.">
+  <title>Wildfires in America</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/scrollama@2.0.0/build/scrollama.min.js"></script>
+  <script src="https://d3js.org/topojson.v3.min.js"></script>
+</head>
+<body>
+    <!-- Fixed Side Narrative Box -->
+    <div id="narrative-box">
+        <div id="narrative-content">
+          <p>Welcome to the Wildfire Story.</p>
+        </div>
+    </div>
+
+  <div id="container">
+    <!-- Section 1: Title with Framed Bar Chart -->
+    <div class="step title-section" data-step="title">
+      <div class="title-content">
+        <h1>Wildfires in America</h1>
+        <p class="description">
+          This visualization explores the trends, causes, and impacts of wildfires across the U.S., highlighting key patterns and preparedness challenges.
+        </p>
+        <p class="author">Thanawit Suwannikom</p>
+        <div id="chart-title"></div>
+        <p>Wildfire occurences across states in the U.S. from 2019 to 2023. The stacked bar heights are log of number of fires in each state by year.</p>
+      </div>
+    </div>
+
+    <!-- Section 2: Fire Trends Over Time -->
+    <div class="step" data-step="trends">
+      <div class="section-content">
+        <h2>Trends in Wildfire Activity (2000–2023)</h2>
+        <!-- Part 2-1: Number of Fires Over Time -->
+        <div class="chart-subsection">
+          <h3>Declining Number of Fires</h3>
+          <p>The number of wildfires has shown a declining trend over the years.</p>
+          <div id="chart-fires-over-time"></div>
+        </div>
+        <!-- Part 2-2: Total Area Burned Over Time -->
+        <div class="chart-subsection">
+          <h3>Persistent Burned Area</h3>
+          <p>Despite fewer fires, the total area burned remains relatively unchanged.</p>
+          <div id="chart-area-over-time"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: State Comparisons (2019–2023) -->
+    <div class="step" data-step="state-comparison">
+      <div class="section-content">
+        <h2>State-by-State Impact (2019–2023)</h2>
+        <div class="side-by-side">
+          <!-- Number of Fires by State -->
+          <div class="chart-subsection">
+            <h3>Fires by State</h3>
+            <div id="chart-fires-by-state"></div>
+          </div>
+          <!-- Total Area Burned by State -->
+          <div class="chart-subsection">
+            <h3>Area Burned by State</h3>
+            <div id="chart-area-by-state"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4: Fullscreen Map -->
+    <div class="step fullscreen" data-step="map">
+      <div class="section-content">
+        <h2>Where Fires Burn: A Closer Look</h2>
+        <div class="filter-controls">
+          <select id="state-select"></select>
+          <select id="year-select"></select>
+        </div>
+        <div id="state-narrative" class="state-narrative"></div>
+        <br>
+        <div id="map"></div>
+        
+      </div>
+    </div>
+
+    <!-- Section 5: Causes and Environmental Factors -->
+    <div class="step" data-step="causes">
+      <div class="section-content">
+        <h2>Understanding the Causes</h2>
+        <!-- Part 5-1: Packed Bubble Chart of Causes -->
+        <div class="chart-subsection">
+          <h3>Top Causes of Wildfires</h3>
+          <div id="chart-causes-bubble"></div>
+        </div>
+        <!-- Part 5-2: Heatmap of Fires by Month -->
+        <div class="chart-subsection">
+          <h3>Seasonal Patterns by State</h3>
+          <select id="heatmap-state-select"></select>
+          <div id="chart-heatmap"></div>
+        </div>
+        <!-- Part 5-3: Scatter Plot of Environmental Factors -->
+        <div class="chart-subsection">
+          <h3>Environmental and Human Factors</h3>
+          <div class="scatter-controls">
+            <label>X-Axis: 
+              <select id="scatter-x-axis">
+                <option value="avg_humidity">Humidity</option>
+                <option value="avg_temp">Temperature</option>
+                <option value="population">Population</option>
+              </select>
+            </label>
+            <label>Y-Axis: 
+              <select id="scatter-y-axis">
+                <option value="fires_2019_2023">Log(Number of Fires)</option>
+                <option value="burned_area_acres">Log(Total Burned Area)</option>
+              </select>
+            </label>
+          </div>
+          <div id="chart-scatter-env"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 6: Preparedness -->
+    <div class="step" data-step="preparedness">
+        <div class="section-content">
+        <h2>Are We Prepared?</h2>
+        <!-- Scatter Plot -->
+        <div class="chart-subsection">
+            <h3>Fire Stations vs. Fire Impact</h3>
+            <label>Y-Axis: 
+            <select id="scatter-preparedness-y-axis">
+                <option value="fires_2019_2023">Avg Annual Fires (2019–2023)</option>
+                <option value="burned_area_acres">Total Burned Area (Acres)</option>
+            </select>
+            </label>
+            <div id="chart-scatter-preparedness"></div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Section 7: Outro -->
+    <div class="step" data-step="outro">
+        <div class="section-content">
+        <h2>What We've Learned</h2>
+        <p>
+            Wildfires remain a pressing concern across the United States. While the number of fires has declined over time, the total area burned remains high — indicating a rise in intensity. 
+        </p>
+        <p>
+            Natural causes like lightning continue to dominate, especially during the dry summer months. Environmental factors such as temperature and humidity could play a critical role but the thourough study is needed to confirm it.
+        </p>
+        <p>
+            When it comes to preparedness, states like California are leading in fire station infrastructure, while others like Montana, despite facing frequent fires, lag in resources.
+        </p>
+        <p>
+            This story highlights the importance of investing in prevention, understanding root causes, and supporting states with appropriate firefighting infrastructure.
+        </p>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" title="Back to Top">↑ Top</button>
+
+  <div class="tooltip" id="tooltip"></div>
+  <script src="script.js"></script>
+</body>
+</html>
